@@ -4,9 +4,18 @@ import './Compo.css'
 
 export const Compo = () => {
     const [input, setInput] = useState("");
-    const calc=(e)=>{
-        setInput(input.concat(e.value))
-        console.log(input);
+    const calc = (e) => {
+        if (e.target.value === 'AC')
+            setInput("");
+
+        else if (e.target.value === 'DEL')
+            setInput(input.substring(0, input.length - 1))
+        else if (e.target.value === '=')
+            setInput(`${eval(input)}`);
+
+        else {
+            setInput(input.concat(e.target.value));
+        }
     }
 
     return (
@@ -14,40 +23,39 @@ export const Compo = () => {
             <div className="calculator">
                 <input className='input' type="text" placeholder='0' value={input} />
                 <div className="line1">
-                    <button className='opt' onClick={calc}>AC</button>
-                    <button className='opt'>DEL</button>
-                    <button className='opt'>/</button>
-                    <button className='opt'>*</button>
+                    <input type="button" value="AC" className='button opt' onClick={calc}></input>
+                    <input type="button" value="DEL" className='button opt' onClick={calc}></input>
+                    <input type="button" value="/" className='button opt' onClick={calc}></input>
+                    <input type="button" value="*" className='button opt' onClick={calc}></input>
                 </div>
                 <div className="line2">
-                    <button onClick={calc}>7</button>
-                    <button>8</button>
-                    <button>9</button>
-                    <button className='opt'>+</button>
+                    <input type="button" value="7" onClick={calc} className="button" />
+                    <input type="button" value="8" onClick={calc} className="button" />
+                    <input type="button" value="9" onClick={calc} className="button" />
+                    <input type="button" value="+" onClick={calc} className='button opt' />
                 </div>
                 <div className="line3">
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
-                    <button className='opt'>-</button>
+                    <input type="button" value="4" onClick={calc} className="button" />
+                    <input type="button" value="5" onClick={calc} className="button" />
+                    <input type="button" value="6" onClick={calc} className="button" />
+                    <input type="button" value="-" onClick={calc} className='button opt' />
                 </div>
                 <div className="line4">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button className='opt'>.</button>
+                    <input type="button" value="1" onClick={calc} className="button" />
+                    <input type="button" value="2" onClick={calc} className="button" />
+                    <input type="button" value="3" onClick={calc} className="button" />
+                    <input type="button" value="." onClick={calc} className='button opt' />
                 </div>
                 <div className="line5">
-                    <button className='down'>0</button>
-                    <button className='opt'>=</button>
+                    <input type="button" value="0" onClick={calc} className='button down' />
+                    <input type="button" value="=" onClick={calc} className='button opt' />
                 </div>
                 <div className="social">
-                    <a href="/"><i className="fa-brands fa-github"></i></a>
-                    <span>AKBagheL</span>
-                    <a href="/"><i className="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/AK-Baghel"><i className="fa-brands fa-github"></i></a>
+                    <span>AKBagheL❤️</span>
+                    <a href="https://www.linkedin.com/in/ankit-kumar-2119781b4"><i className="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
-
         </div>
     )
 }
